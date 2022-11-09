@@ -1,0 +1,9 @@
+# Constants
+int8 PM_10 = 1
+int8 PM_25 = 2
+
+# Request(Particulate Matter Type)
+int8 pm_type
+---
+# Response(Particulate Matter Index(micro gram per cubic meter))
+int64 particulate_matter
