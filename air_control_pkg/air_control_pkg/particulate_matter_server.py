@@ -12,18 +12,15 @@ class PM_Server(Node):
         super().__init__('particulate_matter_server')
         self.get_logger().info('Particulate Matter Server Running.')
 
-        # parameter 선언
         self.declare_parameter("pm_10_parameter", PM_10_DEFAULT)
         self.declare_parameter("pm_25_parameter", PM_25_DEFAULT)
 
-        # particulate_matter 서비스 서버 생성
         self.pm_srv = self.create_service(
-            ParticulateMatter,                  # 서비스 타입
-            'particulate_matter',               # 서비스 이름
-            self.get_pmi_index                  # 콜백 함수
+            ParticulateMatter,                  
+            'particulate_matter',               
+            self.get_pmi_index                  
         )
         
-        # new_pmp 토픽 서브스크립션 생성
         self.sub = self.create_subscription(Int32, "new_pmp", self.calibrate_air_condition, 10)
 
     def get_pmi_index(self, request, response):
